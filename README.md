@@ -6,8 +6,8 @@ The dashboard is designed with interactive filters and drill-throughs, enabling 
 ________________________________________
 ## Dataset & Data Model
 The analysis is based on financial transaction data, structured into the following tables:
+- Dim_Date – A Date Table was created using CALENDAR DAX, ensuring time intelligence calculations.
 - Financial Data – Contains sales transactions, including revenue, cost, discounts, and product details.
-- Dim_Date – A Date Table created using CALENDAR DAX, ensuring time intelligence calculations.
 - Analysis Table – Holds calculated values for Current Year and Prior Year KPIs.
 
 Data Model Relationships
@@ -41,20 +41,32 @@ ________________________________________
 - Identifies best-selling products from the prior year.
 - Highlighted in a different color to make them stand out.
 
-## DAX Calculations Exanples
-1.	Financial Analysis Calculations
+## DAX Calculations 
+TIME INTELLIGENCE DAX
+- Enables to compare KPIs CY to PY
+
+   ```Date Table = ADDCOLUMNS(CALENDARAUTO(), "Month No",MONTH([Date]),"Month name",FORMAT([Date],"MMMM"),"Year",YEAR([Date]))```
+
+FINANCIAL ANALYSIS
+1.	Financial Analysis Calculations for Current Year (CY)
 
 ```Sales Amount = sum(‘Financial data’[Net Sales])```
 
 ```Profit = sum(‘Financial data’[Profit])```
 
+```Orders = sum(‘Financial data’[Unit Sold])```
+
+```Discounts Offered = sum(‘Financial data’[Discounts])```
+
 ```Profit Margin % = DIVIDE([Profit], [Sales Amount],0)```
 
-2.	Top 3 Products by Sales (PY) - dynamically filters the top 3 products and ensures the selection is interactive and adjusts based on applied slicers.
+2. Financial Analysis Calculations for Prior Year (PY) were created similarly to the CY
+  
+3.	Top 3 Products by Sales (PY) - dynamically filters the top 3 products and ensures the selection is interactive and adjusts based on applied slicers.
    
 ```Top 3 Products by Sales =  CALCULATE([Sales Amount], TOPN(3, ALLSELECTED('Financial data'[Product]),  [Sales Amount], DESC),VALUES('Financial data'[Product]) )``` 
 
-3.	Top Highlight (Conditional Formatting for Top 3 Products)
+4.	Top Highlight (Conditional Formatting for Top 3 Products)
 
 ```Top Highlight =  IF(ISBLANK([Top 3 Products by Sales]), 0, 1)``` 
 
