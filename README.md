@@ -41,20 +41,22 @@ ________________________________________
 - Identifies best-selling products from the prior year.
 - Highlighted in a different color to make them stand out.
 
-## DAX Calculations
+## DAX Calculations Exanples
 1.	Financial Analysis Calculations
-Sales Amount = sum(‘Financial data’[Net Sales])
 
-Profit = sum(‘Financial data’[Profit])
+```Sales Amount = sum(‘Financial data’[Net Sales])```
 
-Profit Margin % = DIVIDE([Profit], [Sales Amount],0)
+```Profit = sum(‘Financial data’[Profit])```
+
+```Profit Margin % = DIVIDE([Profit], [Sales Amount],0)```
 
 2.	Top 3 Products by Sales (PY) - dynamically filters the top 3 products and ensures the selection is interactive and adjusts based on applied slicers.
-Top 3 Products by Sales =  CALCULATE([Sales Amount], TOPN(3, ALLSELECTED('Financial data'[Product]),  [Sales Amount], DESC),VALUES('Financial data'[Product]) ) 
+   
+```Top 3 Products by Sales =  CALCULATE([Sales Amount], TOPN(3, ALLSELECTED('Financial data'[Product]),  [Sales Amount], DESC),VALUES('Financial data'[Product]) )``` 
 
 3.	Top Highlight (Conditional Formatting for Top 3 Products)
 
-Top Highlight =  IF(ISBLANK([Top 3 Products by Sales]), 0, 1) 
+```Top Highlight =  IF(ISBLANK([Top 3 Products by Sales]), 0, 1)``` 
 
 Purpose: Highlights the Top 3 products in another color using conditional formatting.
 
