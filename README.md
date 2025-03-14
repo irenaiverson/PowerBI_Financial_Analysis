@@ -85,3 +85,4 @@ Purpose: Highlights the Top 3 products in another color using conditional format
 - The best-selling products from the prior year are dynamically identified.
 - Highlighting helps compare their contribution to overall sales trends.
 
+![Screenshot (37)](https://github.com/user-attachments/assets/b1f0eaaa-3248-40aa-954d-7e1e71fa6969)
