@@ -1,4 +1,4 @@
-# Power BI Portfolio Project: Financial Analysis Report
+# Power BI: Financial Analysis Report
 
 ## Project Overview
 This Power BI project provides a financial performance analysis, focusing on key metrics such as Sales, Profit, Discounts, and Profit Margin % for both Current Year (CY) and Prior Year (PY).
